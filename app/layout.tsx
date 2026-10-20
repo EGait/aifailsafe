@@ -5,7 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/Brand";
 
 // Google Analytics measurement ID. Create the GA4 property, then paste the ID here.
 // Leave as "" until then — nothing loads while it's empty.
-const GA_ID = "";
+const GA_ID = "G-S5SDPS7C7W";
 
 // Absolute base for social-card URLs. Vercel sets VERCEL_PROJECT_PRODUCTION_URL for you;
 // once the real domain is live, replace the fallback with "https://aifailsafe.com".
