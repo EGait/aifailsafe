@@ -25,7 +25,7 @@ export default function IncidentList() {
       {filter !== "all" && <p className="hint">{kindMeta(filter).blurb}</p>}
       <div className="stack">
         {items.map((i) => (
-          <article key={i.id} className="card incident">
+          <article key={i.id} id={i.id} className="card incident">
             <div className="meta">
               <span className="row-date">{i.date}</span>
               <span className={`tag tag-${i.kind}`}>{kindMeta(i.kind).label}</span>

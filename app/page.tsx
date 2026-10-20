@@ -3,12 +3,16 @@ import { INCIDENTS, PROGRESS, PROMISE, kindMeta } from "@/lib/incidents";
 import { ASKS } from "@/lib/asks";
 import { BILLS } from "@/lib/bills";
 import ZipJump from "@/components/ZipJump";
+import { Mark } from "@/components/Brand";
 
 export default function Home() {
   const recent = INCIDENTS.slice(0, 4);
   return (
     <>
       <section className="hero">
+        <div className="hero-mark" aria-hidden="true">
+          <Mark size={160} />
+        </div>
         <p className="eyebrow">AI’s promise and peril, in plain English</p>
         <h1>
           You’re the <span className="accent">failsafe.</span>
@@ -34,10 +38,10 @@ export default function Home() {
           <div className="card">
             <span className="tag tag-bad">The peril</span>
             <p>
-              Deepfake executives on a video call convinced an employee to wire <Link href="/incidents">about $25 million</Link>.
+              Deepfake executives on a video call convinced an employee to wire <Link href="/incidents#arup-deepfake">about $25 million</Link>.
             </p>
             <p>
-              AI agents with real-world access have <Link href="/incidents">deleted live databases and broken into government systems</Link>.
+              AI agents with real-world access have <Link href="/incidents#pocketos-db">deleted live databases and broken into government systems</Link>.
             </p>
           </div>
         </div>
@@ -77,7 +81,7 @@ export default function Home() {
         </div>
         <div className="list">
           {recent.map((i) => (
-            <Link key={i.id} href="/incidents" className="row">
+            <Link key={i.id} href={`/incidents#${i.id}`} className="row">
               <span className="row-date">{i.date}</span>
               <span className="row-title">{i.title}</span>
               <span className={`tag tag-${i.kind}`}>{kindMeta(i.kind).label}</span>

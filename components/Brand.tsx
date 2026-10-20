@@ -7,7 +7,7 @@ export function Mark({ size = 30 }: { size?: number }) {
       <path d="M44 6h12v36H44" stroke="currentColor" strokeWidth="4.5" strokeLinecap="round" strokeLinejoin="round" />
       <polygon points="32,15 39.8,19.5 39.8,28.5 32,33 24.2,28.5 24.2,19.5" fill="var(--accent)" stroke="var(--accent)" strokeWidth="1.5" strokeLinejoin="round" />
       <circle cx="32" cy="24" r="3.2" fill="#fff" />
-      <circle cx="32" cy="24" r="1.4" fill="#0E1A24" />
+      <circle cx="32" cy="24" r="1.4" fill="var(--bg)" />
     </svg>
   );
 }

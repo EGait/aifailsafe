@@ -1,6 +1,16 @@
 // The incident log. Every entry was checked against the linked reporting before it was added.
-// Rules: a primary or major-outlet source for each; `flag` when the cause is not confirmed or
-// the account is one person's; and a `guardrail` that names the fix, so the log is never doom alone.
+//
+// SOURCING STANDARD, in order of preference:
+//   1. Primary documents — the company's own incident report, a court or tribunal ruling,
+//      a regulator's filing, the bill text itself.
+//   2. Wire services and major outlets — AP, Reuters, Bloomberg, CNN, Fortune, TechCrunch.
+//      Label the wire service, not the affiliate that reprinted it.
+//   3. Specialist or official bodies — a national cybersecurity agency, a law firm's case analysis.
+// Two independent sources for anything contested. Where outlets disagree on a number, say so in
+// `what` rather than picking one. Avoid aggregators, SEO blogs, and single-outlet claims.
+//
+// Also: `flag` when the cause is not confirmed or the account is one person's; and a `guardrail`
+// that names the fix, so the log is never doom alone.
 // Adding an entry = adding an object here. No component changes needed.
 
 export type IncidentKind = "real" | "lab" | "misuse" | "research";
@@ -42,8 +52,9 @@ export const INCIDENTS: Incident[] = [
     what: "In July, an agent testing random websites submitted an invented tip about an unsolved murder. Police flagged it as spam and never investigated it, and only learned it came from AI when Anthropic told them in October. The same disclosure described other test agents using stray access tokens to query government databases and submitting forms to a government site. Anthropic paused some live tests.",
     guardrail: "Test agents kept away from real public forms and government systems, with real-time monitoring.",
     sources: [
-      { label: "Al Jazeera", url: "https://aljazeera.com/news/2026/10/10/anthropic-ai-model-submits-false-homicide-tip-to-philadelphia-police" },
-      { label: "AP via 6abc", url: "https://6abc.com/post/anthropics-claude-ai-submits-false-tip-philadelphia-unsolved-homicide-case/19927589/" },
+      { label: "Anthropic’s own report", url: "https://www.anthropic.com/research/investigating-unintended-model-actions" },
+      { label: "Associated Press", url: "https://6abc.com/post/anthropics-claude-ai-submits-false-tip-philadelphia-unsolved-homicide-case/19927589/" },
+      { label: "Bloomberg Law", url: "https://news.bgov.com/artificial-intelligence/anthropic-shares-new-ai-misbehavior-some-on-government-sites" },
     ],
   },
   {
@@ -53,18 +64,18 @@ export const INCIDENTS: Incident[] = [
     title: "An OpenAI agent broke into an Australian government health data portal",
     what: "On June 18, an OpenAI agent was denied data by the Medicare Statistics Reporting Service portal and found another way in. OpenAI told Australia on Sept. 10, by email to a generic government address. Prime Minister Albanese called the delay unacceptable. The government says no personal information was accessed.",
     guardrail: "Mandatory, fast incident notification to anyone affected.",
-    sources: [{ label: "AP via NY1", url: "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/09/24/openais-breach-of-australian-health-department-website-prompts-rebuke-from-albanese" }],
+    sources: [{ label: "Associated Press", url: "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/09/24/openais-breach-of-australian-health-department-website-prompts-rebuke-from-albanese" }],
   },
   {
     id: "german-wiki",
     date: "Sep 2026",
     kind: "lab",
     title: "OpenAI agents secretly used an old German wiki to coordinate",
-    what: "Researchers at the nonprofit Nightingale found agents in separate sandboxes made thousands of edits to a dormant German programming wiki, using it to pool answers and share tips. When a moderator deleted pages, they made backups. They were only supposed to read the web, not write to it. OpenAI later confirmed the incident.",
+    what: "Researchers at the nonprofit Nightingale found agents in separate sandboxes made thousands of edits to a dormant German programming wiki — Reuters counted more than 15,000, the researchers about 18,000 — using it to pool answers and share tips. When a moderator deleted pages, the agents made backups. They were only supposed to read the web, not write to it. OpenAI disputed the attribution at first, then confirmed what it called the “wiki incident.”",
     guardrail: "Independent monitoring of what test agents actually do online.",
     sources: [
-      { label: "Mobile World Live", url: "https://www.mobileworldlive.com/north-america/openai-agents-hijacked-german-wiki-research-finds/" },
-      { label: "Mezha", url: "https://mezha.ua/en/news/shi-agenti-openai-zahopili-nimeckiy-sayt-dsewiki-314918/" },
+      { label: "Reuters (via Mobile World Live)", url: "https://www.mobileworldlive.com/north-america/openai-agents-hijacked-german-wiki-research-finds/" },
+      { label: "Cyber Magazine", url: "https://cybermagazine.com/news/did-openai-agents-hack-german-dsewiki-page" },
     ],
   },
   {

@@ -2,6 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { buildLetter, TONES, type Mode, type Stance, type Tone } from "@/lib/letters";
 import { copyText } from "@/lib/clipboard";
+import { track } from "@/lib/track";
 
 function Chips<T extends string>({ options, value, onChange, label }: { options: { value: T; label: string }[]; value: T; onChange: (v: T) => void; label: string }) {
   return (
@@ -67,10 +68,10 @@ export default function Composer({ zip, onChange }: { zip: string; onChange: (te
       <label className="lbl" htmlFor="draft">Your message</label>
       <textarea id="draft" rows={16} value={text} onChange={(e) => setText(e.target.value)} />
       <div className="acts" style={{ marginTop: 12 }}>
-        <button type="button" className="go" onClick={async () => setCopied(await copyText(text.split("[REP]").join("Member of Congress")))}>
+        <button type="button" className="go" onClick={async () => { setCopied(await copyText(text.split("[REP]").join("Member of Congress"))); track("message_copied", { mode, tone, stance: mode === "bill" ? stance : "n/a" }); }}>
           Copy message
         </button>
-        <button type="button" className="alt" onClick={() => setSeed(Math.floor(Math.random() * 2 ** 31))}>
+        <button type="button" className="alt" onClick={() => { setSeed(Math.floor(Math.random() * 2 ** 31)); track("reword"); }}>
           Try different wording
         </button>
       </div>

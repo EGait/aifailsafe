@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FIND_URL, partyName, salutation, type Member } from "@/lib/reps";
 import { REP_TOKEN } from "@/lib/letters";
 import { copyText } from "@/lib/clipboard";
+import { track } from "@/lib/track";
 
 type Props = { member: Member; role: string; message: string; onSent: () => void };
 
@@ -16,6 +17,7 @@ export default function RepCard({ member, role, message, onSent }: Props) {
     const ok = await copyText(message.split(REP_TOKEN).join(who));
     setCopyFailed(!ok);
     setOpened(true);
+    track("contact_opened", { chamber: member.chamber, copied: ok ? 1 : 0 });
   }
 
   return (
@@ -42,6 +44,7 @@ export default function RepCard({ member, role, message, onSent }: Props) {
             onClick={() => {
               setSent(true);
               onSent();
+              track("message_sent", { chamber: member.chamber });
             }}
           >
             {sent ? "✓ Sent" : "I sent it"}

@@ -82,7 +82,7 @@ export default async function BillPage({ params }: { params: Promise<{ slug: str
         <h2 className="h-big">Incidents this bill speaks to</h2>
         <div className="list">
           {related.map((i) => (
-            <Link key={i.id} href="/incidents" className="row">
+            <Link key={i.id} href={`/incidents#${i.id}`} className="row">
               <span className="row-date">{i.date}</span>
               <span className="row-title">{i.title}</span>
               <span className={`tag tag-${i.kind}`}>{kindMeta(i.kind).label}</span>

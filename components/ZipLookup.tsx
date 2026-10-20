@@ -1,13 +1,12 @@
 "use client";
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { FIND_URL, lookupZip, ordinal, type Lookup } from "@/lib/reps";
+import { track } from "@/lib/track";
 import Composer from "./Composer";
 import RepCard from "./RepCard";
 
-export default function ZipLookup() {
-  const params = useSearchParams();
-  const [zip, setZip] = useState(() => (params.get("zip") ?? "").replace(/\D/g, "").slice(0, 5));
+export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) {
+  const [zip, setZip] = useState(() => initialZip.replace(/\D/g, "").slice(0, 5));
   const [result, setResult] = useState<{ zip: string; lookup: Lookup } | null>(null);
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
@@ -23,8 +22,12 @@ export default function ZipLookup() {
     setBusy(true);
     try {
       const lookup = await lookupZip(value);
-      if (lookup) setResult({ zip: value, lookup });
-      else setError("We couldn’t match that ZIP. Try another, or use the House’s lookup.");
+      if (lookup) {
+        setResult({ zip: value, lookup });
+        // State only — never the ZIP itself.
+        track("reps_found", { state: lookup.state, split_zip: lookup.districts.length > 1 ? 1 : 0 });
+      }
+      else { setError("We couldn’t match that ZIP. Try another, or use the House’s lookup."); track("zip_no_match"); }
     } catch {
       setError("Something went wrong loading the data. Please try again.");
     } finally {
@@ -32,14 +35,15 @@ export default function ZipLookup() {
     }
   }, []);
 
+  // Arriving from the landing page with ?zip= runs the lookup once, automatically.
   const auto = useRef(false);
   useEffect(() => {
-    const incoming = (params.get("zip") ?? "").replace(/\D/g, "");
+    const incoming = initialZip.replace(/\D/g, "");
     if (!auto.current && /^\d{5}$/.test(incoming)) {
       auto.current = true;
       void run(incoming);
     }
-  }, [params, run]);
+  }, [initialZip, run]);
 
   function onSubmit(e: React.FormEvent) {
     e.preventDefault();
