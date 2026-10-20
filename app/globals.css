@@ -57,7 +57,7 @@ main{max-width:960px}
 
 /* ---- sections ---- */
 section{margin:56px 0}
-.hero{margin:40px 0 0}
+.hero{margin:48px 0 0}
 .eyebrow{font:500 14px "IBM Plex Mono",monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:0 0 14px}
 .eyebrow.light{color:var(--panel-dim)}
 .accent{color:var(--accent)}
@@ -141,9 +141,5 @@ ol.asks p{margin:0}
 ul.wins{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;color:var(--panel-dim)}
 .dark a,.blame a{color:var(--panel-ink);text-underline-offset:3px}
 .dark a:hover,.blame a:hover{color:var(--panel-accent)}
-
-/* Landing hero mark: scales with the viewport, capped so it never dwarfs the headline. */
-.hero-mark{color:var(--ink);margin:0 0 22px;line-height:0}
-.hero-mark svg{width:clamp(96px,22vw,172px);height:auto}
 
 .incident:target{outline:2px solid var(--accent);outline-offset:3px}

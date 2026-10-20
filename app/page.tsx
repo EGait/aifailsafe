@@ -3,16 +3,12 @@ import { INCIDENTS, PROGRESS, PROMISE, kindMeta } from "@/lib/incidents";
 import { ASKS } from "@/lib/asks";
 import { BILLS } from "@/lib/bills";
 import ZipJump from "@/components/ZipJump";
-import { Mark } from "@/components/Brand";
 
 export default function Home() {
   const recent = INCIDENTS.slice(0, 4);
   return (
     <>
       <section className="hero">
-        <div className="hero-mark" aria-hidden="true">
-          <Mark size={160} />
-        </div>
         <p className="eyebrow">AI’s promise and peril, in plain English</p>
         <h1>
           You’re the <span className="accent">failsafe.</span>
