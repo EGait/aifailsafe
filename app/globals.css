@@ -1,5 +1,6 @@
 :root{--bg:#F3F5F7;--surface:#FFFFFF;--ink:#0E1A24;--muted:#4A5B6B;--line:#D5DCE3;--accent:#C2410C;--on-accent:#FFFFFF;--soft:#FFE3D3;--soft-ink:#7C2D12;--panel:#0E1A24;--panel-ink:#FFFFFF;--panel-dim:#C3CED8;--panel-line:#33475A;--panel-accent:#FB923C;color-scheme:light}
-@media (prefers-color-scheme:dark){:root{--bg:#0B141C;--surface:#13212D;--ink:#E8EDF2;--muted:#9FB0C0;--line:#26384A;--accent:#FB923C;--on-accent:#0E1A24;--soft:#3A2415;--soft-ink:#FDBA74;--panel:#16242F;--panel-ink:#F2F6F9;--panel-dim:#B4C4D1;--panel-line:#31465A;--panel-accent:#FB923C;color-scheme:dark}}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0B141C;--surface:#13212D;--ink:#E8EDF2;--muted:#9FB0C0;--line:#26384A;--accent:#FB923C;--on-accent:#0E1A24;--soft:#3A2415;--soft-ink:#FDBA74;--panel:#16242F;--panel-ink:#F2F6F9;--panel-dim:#B4C4D1;--panel-line:#31465A;--panel-accent:#FB923C;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0B141C;--surface:#13212D;--ink:#E8EDF2;--muted:#9FB0C0;--line:#26384A;--accent:#FB923C;--on-accent:#0E1A24;--soft:#3A2415;--soft-ink:#FDBA74;--panel:#16242F;--panel-ink:#F2F6F9;--panel-dim:#B4C4D1;--panel-line:#31465A;--panel-accent:#FB923C;color-scheme:dark}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:calc(88px + env(safe-area-inset-top,0px))}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -174,3 +175,11 @@ ul.wins{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;c
 .article-hero{display:block;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);margin:28px 0 0}
 .article-thumb{flex:0 0 100%;width:100%;height:auto;border-radius:10px;border:1px solid var(--line);margin-bottom:14px}
 @media (min-width:720px){.article-thumb{flex:0 0 220px;width:220px;margin-bottom:0}}
+
+/* ---- theme toggle ---- */
+.theme-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;padding:0;border:2px solid var(--muted);border-radius:999px;background:transparent;color:var(--ink);cursor:pointer}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent)}
+.theme-btn .moon{display:none}
+:root[data-theme="dark"] .theme-btn .moon{display:block}
+:root[data-theme="dark"] .theme-btn .sun{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-btn .moon{display:block}:root:not([data-theme="light"]) .theme-btn .sun{display:none}}

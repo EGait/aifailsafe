@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export function Mark({ size = 30 }: { size?: number }) {
   return (
@@ -30,6 +31,7 @@ export function SiteHeader() {
           <Link href="/act" className="nav-cta">
             Take action
           </Link>
+          <ThemeToggle />
         </nav>
       </div>
     </header>
