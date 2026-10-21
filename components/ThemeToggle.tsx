@@ -11,12 +11,8 @@ export default function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const attr = document.documentElement.getAttribute("data-theme");
-    if (attr === "dark" || attr === "light") {
-      setTheme(attr);
-    } else {
-      setTheme(window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
-    }
+    // Light unless the visitor has explicitly chosen dark. The system setting is ignored.
+    setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light");
   }, []);
 
   function toggle() {
