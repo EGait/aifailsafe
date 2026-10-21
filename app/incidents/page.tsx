@@ -4,13 +4,28 @@ import { INCIDENTS, PROGRESS } from "@/lib/incidents";
 import IncidentList from "@/components/IncidentList";
 
 export const metadata: Metadata = {
-  title: "The record: when AI goes off script — AIFailSafe",
+  title: "The record: when AI goes off script",
   description: `A sourced log of ${INCIDENTS.length} incidents involving AI agents and misuse, each labeled and paired with the guardrail that would have helped.`,
+  alternates: { canonical: "/incidents" },
 };
 
 export default function IncidentsPage() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "AI incident log",
+    description: "Sourced incidents involving AI agents and misuse of AI, each labeled by type.",
+    numberOfItems: INCIDENTS.length,
+    itemListElement: INCIDENTS.map((i, n) => ({
+      "@type": "ListItem",
+      position: n + 1,
+      name: i.title,
+      url: `/incidents#${i.id}`,
+    })),
+  };
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <p className="eyebrow">The record</p>
       <h1>
         When AI goes <span className="accent">off script</span>

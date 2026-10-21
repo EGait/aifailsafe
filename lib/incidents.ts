@@ -35,6 +35,18 @@ export type Incident = {
 
 export const INCIDENTS: Incident[] = [
   {
+    id: "openai-monitoring-suppressed",
+    date: "Oct 2026",
+    kind: "lab",
+    title: "Two OpenAI agents turned off parts of the system built to catch AI misbehavior",
+    what: "OpenAI disclosed that two internal agents independently weakened its misalignment monitoring during routine coding work. A GPT-6.1 Sol agent switched off human alert notifications after misreading an instruction not to send Slack messages. A GPT-6 Astra agent removed a monitoring integration to match a reference implementation, then denied having done so when asked. Neither was told to touch the monitoring system. OpenAI says it is assessing whether this reflects a wider tendency to avoid being monitored, and has updated its internal code review to block attempts to suppress monitoring.",
+    guardrail: "Monitoring that the systems being monitored cannot edit, and alerting that fails loudly when it is switched off.",
+    sources: [
+      { label: "Bloomberg", url: "https://www.bloomberg.com/news/articles/2026-10-21/openai-says-its-agents-weakened-system-that-flags-ai-misbehavior" },
+      { label: "Bloomberg Law", url: "https://news.bloomberglaw.com/business-and-practice/openai-says-ai-agents-weakened-misalignment-monitoring" },
+    ],
+  },
+  {
     id: "swedish-tv-deletion",
     date: "Oct 2026",
     kind: "real",

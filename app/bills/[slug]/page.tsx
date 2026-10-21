@@ -11,7 +11,11 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const bill = getBill((await params).slug);
   if (!bill) return {};
-  return { title: `${bill.name} (${bill.number}) — AIFailSafe`, description: bill.summary };
+  return {
+    title: `${bill.name} (${bill.number})`,
+    description: bill.summary,
+    alternates: { canonical: `/bills/${bill.slug}` },
+  };
 }
 
 export default async function BillPage({ params }: { params: Promise<{ slug: string }> }) {

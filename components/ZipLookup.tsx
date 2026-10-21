@@ -3,6 +3,7 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { FIND_URL, lookupZip, ordinal, type Lookup } from "@/lib/reps";
 import { track } from "@/lib/track";
 import Composer from "./Composer";
+import SignupForm from "./SignupForm";
 import RepCard from "./RepCard";
 
 export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) {
@@ -11,7 +12,9 @@ export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) 
   const [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
+  const [script, setScript] = useState("");
   const onMessage = useCallback((t: string) => setMessage(t), []);
+  const onScript = useCallback((t: string) => setScript(t), []);
   const [sent, setSent] = useState(0);
 
   const run = useCallback(async (value: string) => {
@@ -72,12 +75,12 @@ export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) 
       {result && lookup && (
         <div id="out">
           <h2>1. Write your message</h2>
-          <Composer zip={result.zip} onChange={onMessage} />
+          <Composer zip={result.zip} onChange={onMessage} onScript={onScript} />
           <h2>2. Send it (about 30 seconds each)</h2>
-          <p className="hint">Tap a button below. We copy your message and open that office’s form. Paste it in, add your address, and hit send.</p>
+          <p className="hint">Tap Email and we copy your message and open that office’s form — paste it in, add your address, send. Calling carries more weight if you have a spare minute, and there’s a script for it under each name.</p>
           <p className="toast" role="status">{done ? "All sent. Thank you!" : sent > 0 ? `${Math.min(sent, total)} of ${total} sent so far.` : ""}</p>
           {lookup.senators.length ? (
-            lookup.senators.map((m) => <RepCard key={m.name} member={m} role={`U.S. Senator, ${lookup.state}`} message={message} onSent={() => setSent((n) => n + 1)} />)
+            lookup.senators.map((m) => <RepCard key={m.name} member={m} role={`U.S. Senator, ${lookup.state}`} message={message} script={script} onSent={() => setSent((n) => n + 1)} />)
           ) : (
             <div className="note">This area has no voting senators. It is represented by a non-voting delegate.</div>
           )}
@@ -93,7 +96,7 @@ export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) 
             return (
               <Fragment key={d.code}>
                 {d.members.length ? (
-                  d.members.map((m) => <RepCard key={m.name} member={m} role={role} message={message} onSent={() => setSent((x) => x + 1)} />)
+                  d.members.map((m) => <RepCard key={m.name} member={m} role={role} message={message} script={script} onSent={() => setSent((x) => x + 1)} />)
                 ) : (
                   <div className="note">{d.label} currently has no sitting representative. The seat is vacant, so write to your senators above, or check back once it is filled.</div>
                 )}
@@ -103,6 +106,7 @@ export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) 
           {done && (
             <div className="card">
               <p>You just told Congress what you want on AI. The more people do it, the harder it is to ignore.</p>
+              <SignupForm source="after-send" compact />
               <button type="button" className="call" onClick={() => navigator.share?.({ title: "AIFailSafe", url: location.origin }).catch(() => {})}>Share this page</button>
             </div>
           )}

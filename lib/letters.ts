@@ -122,3 +122,25 @@ export function buildLetter({ mode, stance, tone, zip, name, why, seed }: Letter
     `${pick(SIGN, seed, 7)},\n${name.trim() || "A constituent"}\nZIP ${zip}`,
   ].join("\n\n");
 }
+
+/**
+ * A spoken script for a phone call. Staff log a tally by position, not by argument, so
+ * the goal is short and clear: who you are, where you live, what you want. Roughly 30 seconds.
+ */
+export function buildCallScript({ mode, stance, zip, name, why }: Omit<LetterOptions, "tone" | "seed">): string {
+  const who = name.trim() ? `my name is ${name.trim()} and I'm` : "I'm";
+  const ask =
+    mode === "general"
+      ? "I'd like the Senator or Representative to support federal rules on AI: companies report serious failures on a deadline, keep a working off switch, and stay accountable for what their systems do."
+      : stance === "oppose"
+        ? "I'd like the Senator or Representative to oppose the AI Kill Switch Act, H.R. 9917, as written. I'm not against AI safety rules, but this one lets Homeland Security redefine who's covered every year, and an appeal doesn't pause a shutdown order."
+        : "I'd like the Senator or Representative to co-sponsor the AI Kill Switch Act, H.R. 9917. It would require the largest AI companies to keep a working off switch and report serious incidents.";
+  const reason = why.trim() ? `\n\nIf they ask why: ${why.trim()}` : "";
+  return `Hi, ${who} a constituent calling from ZIP ${zip}.
+
+${ask}
+
+Can you pass that along? Thank you for your time.${reason}
+
+[If you get voicemail, leave the same message and include your full address so they can verify you're a constituent.]`;
+}

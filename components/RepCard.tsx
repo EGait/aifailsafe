@@ -5,12 +5,13 @@ import { REP_TOKEN } from "@/lib/letters";
 import { copyText } from "@/lib/clipboard";
 import { track } from "@/lib/track";
 
-type Props = { member: Member; role: string; message: string; onSent: () => void };
+type Props = { member: Member; role: string; message: string; script: string; onSent: () => void };
 
-export default function RepCard({ member, role, message, onSent }: Props) {
+export default function RepCard({ member, role, message, script, onSent }: Props) {
   const [opened, setOpened] = useState(false);
   const [sent, setSent] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
+  const [showScript, setShowScript] = useState(false);
   const who = salutation(member);
 
   async function handleOpen() {
@@ -32,7 +33,12 @@ export default function RepCard({ member, role, message, onSent }: Props) {
           Email {who}
         </a>
         {member.phone && (
-          <a className="alt" href={`tel:+1${member.phone.replace(/\D/g, "")}`} aria-label={`Call ${member.name} at ${member.phone}`}>
+          <a
+            className="call secondary"
+            href={`tel:+1${member.phone.replace(/\D/g, "")}`}
+            aria-label={`Call ${member.name} at ${member.phone}`}
+            onClick={() => track("call_started", { chamber: member.chamber })}
+          >
             Call {member.phone}
           </a>
         )}
@@ -51,6 +57,30 @@ export default function RepCard({ member, role, message, onSent }: Props) {
           </button>
         )}
       </div>
+      {member.phone && (
+        <>
+          <button
+            type="button"
+            className="link-btn"
+            aria-expanded={showScript}
+            onClick={() => {
+              setShowScript((v) => !v);
+              if (!showScript) track("script_viewed", { chamber: member.chamber });
+            }}
+          >
+            {showScript ? "Hide what to say" : "What do I say on the phone?"}
+          </button>
+          {showScript && (
+            <div className="script">
+              <p className="hint">A staffer answers, takes your position, and logs it. Thirty seconds.</p>
+              <pre>{script.replace("the Senator or Representative", who)}</pre>
+              <button type="button" className="alt" onClick={() => copyText(script.replace("the Senator or Representative", who))}>
+                Copy script
+              </button>
+            </div>
+          )}
+        </>
+      )}
       {opened && (
         <p className="hint">
           {copyFailed

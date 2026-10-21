@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import ZipLookup from "@/components/ZipLookup";
 
 export const metadata: Metadata = {
-  title: "Take action — AIFailSafe",
-  description: "Find your senators and House member, write a message about AI guardrails, and send it in about a minute.",
+  title: "Take action: find your representatives",
+  description: "Enter your ZIP to find your senators and House member, write a message about AI guardrails, and send it in about a minute.",
+  alternates: { canonical: "/act" },
 };
 
 export default async function ActPage({ searchParams }: { searchParams: Promise<{ zip?: string }> }) {

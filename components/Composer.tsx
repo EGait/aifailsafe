@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
-import { buildLetter, TONES, type Mode, type Stance, type Tone } from "@/lib/letters";
+import { buildCallScript, buildLetter, TONES, type Mode, type Stance, type Tone } from "@/lib/letters";
 import { copyText } from "@/lib/clipboard";
 import { track } from "@/lib/track";
 
@@ -16,7 +16,7 @@ function Chips<T extends string>({ options, value, onChange, label }: { options:
   );
 }
 
-export default function Composer({ zip, onChange }: { zip: string; onChange: (text: string) => void }) {
+export default function Composer({ zip, onChange, onScript }: { zip: string; onChange: (text: string) => void; onScript: (text: string) => void }) {
   const [mode, setMode] = useState<Mode>("general");
   const [stance, setStance] = useState<Stance>("support");
   const [tone, setTone] = useState<Tone>("inf");
@@ -30,6 +30,7 @@ export default function Composer({ zip, onChange }: { zip: string; onChange: (te
   // Changing any option rewrites the draft; manual edits are kept until then.
   useEffect(() => setText(generated), [generated]);
   useEffect(() => onChange(text), [text, onChange]);
+  useEffect(() => onScript(buildCallScript({ mode, stance, zip, name, why })), [mode, stance, zip, name, why, onScript]);
 
   return (
     <div className="card">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import SignupForm from "./SignupForm";
 
 export function Mark({ size = 30 }: { size?: number }) {
   return (
@@ -25,6 +26,7 @@ export function SiteHeader() {
         <nav aria-label="Main">
           <Link href="/asks">The asks</Link>
           <Link href="/incidents">Incidents</Link>
+          <Link href="/analysis">Analysis</Link>
           <Link href="/bills/ai-kill-switch-act">Bills</Link>
           <Link href="/act" className="nav-cta">
             Take action
@@ -39,8 +41,19 @@ export function SiteFooter() {
   return (
     <footer className="site-foot">
       <div className="foot-in">
+        <SignupForm source="footer" />
         <p>
           <strong>AIFailSafe</strong> is independent and nonpartisan. Every incident links to its source, every bill shows both sides, and corrections are public.
+        </p>
+        <p className="foot-links">
+          <a href="https://x.com/aifail_safe" rel="me noopener noreferrer" target="_blank">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M18.9 2H22l-7.2 8.3L23.3 22h-6.6l-5.2-6.8L5.6 22H2.5l7.7-8.8L1.1 2h6.8l4.7 6.2L18.9 2Zm-1.1 18h1.7L7.3 3.8H5.5L17.8 20Z" />
+            </svg>
+            @aifail_safe
+          </a>
+          <a href="mailto:aifailsafeorg@gmail.com">aifailsafeorg@gmail.com</a>
+          <span>Spotted an error? Email us and we’ll correct it in public.</span>
         </p>
         <p className="hint">
           Rep data: the public-domain <a href="https://github.com/unitedstates/congress-legislators">congress-legislators</a> dataset and the{" "}

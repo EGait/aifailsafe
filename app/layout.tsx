@@ -17,8 +17,14 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "AIFailSafe: tell Congress what you want on AI",
-  description: "Find your senators and House member, then send them a message about AI guardrails in under a minute.",
+  title: {
+    default: "AIFailSafe — AI incidents, AI bills, and your representatives",
+    template: "%s — AIFailSafe",
+  },
+  description:
+    "A sourced log of what AI systems have actually done, plain-English summaries of the bills in Congress, and a one-minute way to tell your representatives what you want.",
+  alternates: { canonical: "/" },
+  keywords: ["AI safety", "AI regulation", "AI incidents", "AI policy", "contact Congress", "AI accountability", "AI Kill Switch Act"],
   // Next serves app/icon.svg, app/apple-icon.png and app/opengraph-image.png automatically.
   openGraph: {
     title: "AIFailSafe",
@@ -27,7 +33,14 @@ export const metadata: Metadata = {
     type: "website",
     url: "/",
   },
-  twitter: { card: "summary_large_image" },
+  twitter: {
+    card: "summary_large_image",
+    title: "AIFailSafe",
+    description: "You’re the failsafe. Find your reps and tell them what you want on AI.",
+    site: "@aifail_safe",
+    creator: "@aifail_safe",
+  },
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
 };
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
@@ -55,6 +68,22 @@ gtag('config', '${GA_ID}');`}
         )}
       </head>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "AIFailSafe",
+              url: SITE_URL,
+              logo: `${SITE_URL}/icon.svg`,
+              description:
+                "Independent, nonpartisan tracking of AI incidents and AI legislation, with tools for the public to contact Congress.",
+              email: "aifailsafeorg@gmail.com",
+              sameAs: ["https://x.com/aifail_safe"],
+            }),
+          }}
+        />
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

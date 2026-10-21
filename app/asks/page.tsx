@@ -4,8 +4,9 @@ import { ASKS } from "@/lib/asks";
 import { BILLS } from "@/lib/bills";
 
 export const metadata: Metadata = {
-  title: "What we’re asking for — AIFailSafe",
+  title: "What we’re asking for",
   description: "Five plain-English asks for AI guardrails, why each one exists, and where Congress stands on it.",
+  alternates: { canonical: "/asks" },
 };
 
 export default function AsksPage() {
