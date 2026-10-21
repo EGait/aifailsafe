@@ -19,6 +19,10 @@ export default function AnalysisPage() {
       <div className="stack">
         {ARTICLES.map((a) => (
           <Link key={a.slug} href={`/analysis/${a.slug}`} className="card article-row">
+            {a.image && (
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img className="article-thumb" src={a.image} alt="" width={1200} height={630} />
+            )}
             <span className="row-date">{a.date}</span>
             <span>
               <span className="name">{a.title}</span>

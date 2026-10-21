@@ -1,5 +1,4 @@
 import Link from "next/link";
-import SignupForm from "./SignupForm";
 
 export function Mark({ size = 30 }: { size?: number }) {
   return (
@@ -41,7 +40,6 @@ export function SiteFooter() {
   return (
     <footer className="site-foot">
       <div className="foot-in">
-        <SignupForm source="footer" />
         <p>
           <strong>AIFailSafe</strong> is independent and nonpartisan. Every incident links to its source, every bill shows both sides, and corrections are public.
         </p>

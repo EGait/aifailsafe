@@ -3,7 +3,6 @@ import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { FIND_URL, lookupZip, ordinal, type Lookup } from "@/lib/reps";
 import { track } from "@/lib/track";
 import Composer from "./Composer";
-import SignupForm from "./SignupForm";
 import RepCard from "./RepCard";
 
 export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) {
@@ -106,7 +105,6 @@ export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) 
           {done && (
             <div className="card">
               <p>You just told Congress what you want on AI. The more people do it, the harder it is to ignore.</p>
-              <SignupForm source="after-send" compact />
               <button type="button" className="call" onClick={() => navigator.share?.({ title: "AIFailSafe", url: location.origin }).catch(() => {})}>Share this page</button>
             </div>
           )}

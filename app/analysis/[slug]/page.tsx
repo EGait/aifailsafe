@@ -15,7 +15,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     title: a.title,
     description: a.dek,
     alternates: { canonical: `/analysis/${a.slug}` },
-    openGraph: { type: "article", publishedTime: a.isoDate, title: a.title, description: a.dek },
+    openGraph: {
+      type: "article",
+      publishedTime: a.isoDate,
+      title: a.title,
+      description: a.dek,
+      ...(a.image ? { images: [{ url: a.image, width: 1200, height: 630 }] } : {}),
+    },
   };
 }
 
@@ -40,6 +46,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       </p>
       <h1>{a.title}</h1>
       <p className="lead">{a.dek}</p>
+      {a.image && (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img className="article-hero" src={a.image} alt="" width={1200} height={630} />
+      )}
 
       <article className="prose">
         {a.body.map((b, n) => {

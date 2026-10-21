@@ -71,38 +71,6 @@ Mark `message_sent` as a key event in GA (Admin → Events) so conversion rate s
 
 Never add a parameter that identifies a person: no ZIP codes, names, or message text.
 
-## Email collection
-
-We collect addresses and send nothing — no email provider, no cost. When the list is worth
-emailing, pick a sender then.
-
-**Setup:** add a Neon Postgres database from the Vercel Marketplace (free tier). It injects
-`DATABASE_URL` automatically. Then run this once in Neon's SQL editor:
-
-```sql
-CREATE TABLE IF NOT EXISTS subscribers (
-  id              SERIAL PRIMARY KEY,
-  email           TEXT UNIQUE NOT NULL,
-  source          TEXT,
-  created_at      TIMESTAMPTZ NOT NULL DEFAULT NOW(),
-  unsubscribed_at TIMESTAMPTZ
-);
-```
-
-Without `DATABASE_URL` the form renders but returns a friendly error, so local dev is unaffected.
-
-**Export when you're ready to send:**
-
-```sql
-SELECT email FROM subscribers WHERE unsubscribed_at IS NULL ORDER BY created_at;
-```
-
-`source` records where someone signed up (`footer`, `after-send`), so you can see which
-placement works. A honeypot field blocks most bots. Duplicate signups are silently ignored.
-
-**Before your first send** you'll need an unsubscribe link in every email (required by CAN-SPAM)
-and ideally a confirmation step. Neither is built yet — that's the sending half.
-
 ## Sourcing standard
 
 `lib/incidents.ts` documents the rule in full. Short version:
