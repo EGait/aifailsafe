@@ -26,6 +26,7 @@ export function SiteHeader() {
         <nav aria-label="Main">
           <Link href="/asks">The asks</Link>
           <Link href="/incidents">Incidents</Link>
+          <Link href="/breakthroughs">Breakthroughs</Link>
           <Link href="/analysis">Analysis</Link>
           <Link href="/bills/ai-kill-switch-act">Bills</Link>
           <Link href="/act" className="nav-cta">

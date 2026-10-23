@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { INCIDENTS, PROGRESS, PROMISE, kindMeta } from "@/lib/incidents";
+import { INCIDENTS, PROGRESS, kindMeta } from "@/lib/incidents";
+import { BREAKTHROUGHS } from "@/lib/breakthroughs";
 import { ASKS } from "@/lib/asks";
 import { BILLS } from "@/lib/bills";
 import ZipJump from "@/components/ZipJump";
@@ -25,11 +26,11 @@ export default function Home() {
         <div className="two">
           <div className="card">
             <span className="tag tag-good">The promise</span>
-            {PROMISE.map((p) => (
-              <p key={p.url}>
-                {p.text} <a href={p.url}>Source</a>
-              </p>
-            ))}
+            <p>AlphaFold predicted the structures of nearly all known proteins, and its creators shared the 2024 Nobel Prize in Chemistry.</p>
+            <p>In a Swedish trial of more than 100,000 women, AI-supported mammogram screening found 29% more cancers without adding false alarms.</p>
+            <p>
+              <Link href="/breakthroughs">All {BREAKTHROUGHS.length} breakthroughs</Link>
+            </p>
           </div>
           <div className="card">
             <span className="tag tag-bad">The peril</span>

@@ -197,10 +197,6 @@ export const PROGRESS = [
   { text: "The FTC opened the first federal probe into rogue AI agents.", when: "Sep 2026", url: "https://www.aljazeera.com/economy/2026/9/30/us-regulator-launches-probe-into-ai-companies" },
 ];
 
-export const PROMISE = [
-  { text: "AlphaFold predicted the structures of nearly all known proteins, and its creators shared the 2024 Nobel Prize in Chemistry.", url: "https://www.nobelprize.org/prizes/chemistry/2024/summary/" },
-  { text: "In a Swedish trial of more than 100,000 women, AI-supported mammogram screening found 29% more cancers without adding false alarms.", url: "https://pubmed.ncbi.nlm.nih.gov/39904652/" },
-];
 
 export const byKind = (k: IncidentKind | "all") => (k === "all" ? INCIDENTS : INCIDENTS.filter((i) => i.kind === k));
 export const kindMeta = (k: IncidentKind) => KINDS.find((x) => x.id === k)!;

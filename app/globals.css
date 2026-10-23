@@ -183,3 +183,13 @@ ul.wins{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:10px;c
 .theme-btn .moon{display:none}
 :root[data-theme="dark"] .theme-btn .moon{display:block}
 :root[data-theme="dark"] .theme-btn .sun{display:none}
+
+/* ---- breakthroughs ---- */
+.stage-deployed{background:#DDF1EE;color:#134E48}
+.stage-trial{background:#DCE7F3;color:#1E3A5F}
+.stage-research{background:#E3E6E9;color:#2B3A48}
+:root[data-theme="dark"] .stage-deployed{background:#123D37;color:#8FD8CC}
+:root[data-theme="dark"] .stage-trial{background:#1B3350;color:#A9C6E8}
+:root[data-theme="dark"] .stage-research{background:#223040;color:#C3CED8}
+.caveat{background:var(--bg);border-left:4px solid var(--muted);border-radius:0 10px 10px 0;padding:12px 16px}
+.caveat p{margin:0;color:var(--muted)}
