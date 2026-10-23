@@ -17,7 +17,7 @@ export default function BreakthroughsPage() {
         What AI has <span className="accent">actually delivered</span>
       </h1>
       <p className="lead">
-        The case for guardrails only makes sense if there is something worth protecting. These are results that held up, with the same sourcing rules we use for incidents, and an honest label on how far along each one is.
+        The case for guardrails only makes sense if there is something worth protecting. These are results that held up, with the same sourcing rules we use for incidents, and an honest label on how far along each one is. Saving lives, reading lost books, finding drugs nobody was looking for.
       </p>
 
       <section className="note-box">

@@ -72,6 +72,44 @@ export const BREAKTHROUGHS: Breakthrough[] = [
       { label: "AJMC", url: "https://www.ajmc.com/view/ai-derived-therapy-for-ipf-shows-potential-in-phase-2a-trial" },
     ],
   },
+  {
+    id: "flood-forecasting",
+    date: "2024",
+    stage: "deployed",
+    field: "Disaster response",
+    title: "AI flood warnings now reach 700 million people in 100 countries",
+    what: "Google's flood model predicts river flooding up to seven days ahead and runs in places with few or no physical river gauges, which is where most of the world's flood-exposed population lives. Warnings appear in Search, Maps and Flood Hub. The underlying work was published in Nature.",
+    caveat: "A warning only helps if it reaches people and they can act on it. Coverage is not the same as lives saved.",
+    sources: [
+      { label: "Google Crisis Response", url: "https://crisisresponse.google/floods" },
+      { label: "Android Authority", url: "https://www.androidauthority.com/google-flood-detection-3498988/" },
+    ],
+  },
+  {
+    id: "abaucin",
+    date: "2023",
+    stage: "research",
+    field: "Medicine",
+    title: "AI found a new antibiotic for one of the world's most dangerous superbugs",
+    what: "Researchers at McMaster and MIT used a machine learning model to screen chemical space for molecules that could kill Acinetobacter baumannii, which the World Health Organization lists among the most dangerous antibiotic-resistant bacteria. The result, abaucin, cleared infections in mice and killed samples taken from patients. It is narrow spectrum, so it spares the gut microbiome.",
+    caveat: "Mice and lab samples, not people. An earlier AI-found antibiotic, halicin, has not reached human trials either.",
+    sources: [
+      { label: "Nature Chemical Biology (via McMaster)", url: "https://news.mcmaster.ca/artificial-intelligence-new-antibiotic-drug-resistant-pathogen-acinetobacter-baumannii/" },
+    ],
+  },
+  {
+    id: "vesuvius-scrolls",
+    date: "2024",
+    stage: "research",
+    field: "History",
+    title: "AI read a scroll that was buried by Mount Vesuvius in 79 AD",
+    what: "About 1,800 scrolls from a villa in Herculaneum were carbonized by the eruption and were too fragile to unroll. The Vesuvius Challenge trained models to detect ink in 3D X-ray scans, letting researchers read the scrolls without touching them. Luke Farritor, then a computer science student at the University of Nebraska, recovered the first word. A team later decoded hundreds of words of previously unknown text and shared a $700,000 prize.",
+    caveat: "A fraction of one scroll so far. Hundreds remain unread.",
+    sources: [
+      { label: "National Endowment for the Humanities", url: "https://www.neh.gov/news/words-mysterious-scroll-buried-mount-vesuvius-eruption-deciphered-first-time-after-2000-years" },
+      { label: "Euronews", url: "https://www.euronews.com/culture/2024/02/07/ai-helps-decode-scrolls-destroyed-during-the-vesuvius-eruption" },
+    ],
+  },
 ];
 
 export const byStage = (s: Stage | "all") => (s === "all" ? BREAKTHROUGHS : BREAKTHROUGHS.filter((b) => b.stage === s));
