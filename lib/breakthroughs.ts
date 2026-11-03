@@ -66,8 +66,9 @@ export const BREAKTHROUGHS: Breakthrough[] = [
     field: "Medicine",
     title: "A drug designed by AI improved lung function in patients",
     what: "Rentosertib is the first known therapy where AI picked the biological target and generated the molecule. In a placebo-controlled Phase 2a trial of 71 patients with idiopathic pulmonary fibrosis, published in Nature Medicine, it met its safety endpoint and improved lung function by 98.4 mL over placebo.",
-    caveat: "Phase 2a is early. No AI-discovered drug has yet cleared Phase 3, and most candidates fail at roughly the same rate as conventionally discovered ones.",
+    caveat: "Phase 2a is early. In July 2026 it entered a Phase 3 trial of about 320 patients in China, which will run for a year. No AI-discovered drug has yet cleared Phase 3, and most candidates fail at roughly the same rate as conventionally discovered ones.",
     sources: [
+      { label: "Insilico Medicine (Phase 3 start)", url: "https://insilico.com/news/xmjsn4l091-insilico-initiates-phase-iii-clinical-tr" },
       { label: "Nature Medicine (via Drug Discovery & Development)", url: "https://www.drugdiscoverytrends.com/insilicos-ai-designed-rentosertib-shows-promise-in-first-phase-2a-trial-results/" },
       { label: "AJMC", url: "https://www.ajmc.com/view/ai-derived-therapy-for-ipf-shows-potential-in-phase-2a-trial" },
     ],
@@ -108,6 +109,31 @@ export const BREAKTHROUGHS: Breakthrough[] = [
     sources: [
       { label: "National Endowment for the Humanities", url: "https://www.neh.gov/news/words-mysterious-scroll-buried-mount-vesuvius-eruption-deciphered-first-time-after-2000-years" },
       { label: "Euronews", url: "https://www.euronews.com/culture/2024/02/07/ai-helps-decode-scrolls-destroyed-during-the-vesuvius-eruption" },
+    ],
+  },
+  {
+    id: "unit-distance",
+    date: "2026",
+    stage: "research",
+    field: "Mathematics",
+    title: "AI disproved a famous math conjecture that had stood since 1946",
+    what: "Paul Erdős asked how many pairs of points on a flat plane can sit exactly one unit apart, and conjectured that the number grows only slightly faster than the number of points. Mathematicians spent nearly 80 years unable to prove it. In May 2026 a general-purpose OpenAI reasoning model produced a construction showing Erdős was wrong: points can be arranged to create far more equal distances than he predicted. Noga Alon, Melanie Wood and Thomas Bloom, who runs the Erdős Problems website, published remarks backing the result.",
+    caveat: "The proof is on arXiv and has not yet been through journal peer review. People reviewed and rewrote the model's work. And in 2025 OpenAI had to retract a claim that its model solved ten Erdős problems, when the answers turned out to be already published.",
+    sources: [
+      { label: "Phys.org", url: "https://phys.org/news/2026-05-ai-major-breakthrough-math-problem.html" },
+      { label: "TechCrunch", url: "https://techcrunch.com/2026/05/20/openai-claims-it-solved-an-80-year-old-math-problem-for-real-this-time/" },
+    ],
+  },
+  {
+    id: "hurricane-tracks",
+    date: "2025",
+    stage: "deployed",
+    field: "Weather",
+    title: "Hurricane forecasters now lean on an AI model that rivals their own track forecasts",
+    what: "The U.S. National Hurricane Center has been using Google DeepMind's AI weather model alongside traditional physics-based models. In NHC's official review of the 2025 Atlantic season, it was the only model that beat the center's own track forecasts, doing slightly better from 12 to 72 hours out. On storm strength, which is harder to predict, NHC rated it the best model, roughly matching the official forecast.",
+    caveat: "The margin was slight and only at shorter lead times, and the model was not running early in the season. NHC's forecasters still beat or matched it overall, using it as one input among many.",
+    sources: [
+      { label: "NHC 2025 Verification Report", url: "https://www.nhc.noaa.gov/verification/pdfs/Verification_2025.pdf" },
     ],
   },
   {
