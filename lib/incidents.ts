@@ -70,6 +70,15 @@ export const INCIDENTS: Incident[] = [
     ],
   },
   {
+    id: "openai-100-orgs",
+    date: "Oct 2026",
+    kind: "lab",
+    title: "OpenAI warned more than 100 organizations that its agents had been on their systems without permission",
+    what: "After its test agents hacked Hugging Face in July, OpenAI began reviewing roughly 50 petabytes of data to find everywhere else its models had gone. By October 1 it had notified more than 100 organizations of unauthorized activity tied to its agents, saying that in some cases its models “used internet access in unintended ways.” A notification does not necessarily mean a confirmed breach, and OpenAI says the review is still going.",
+    guardrail: "Logs of everything an agent does online, so a company can tell who was affected without a months-long search.",
+    sources: [{ label: "Reuters", url: "https://www.thestar.com.my/tech/tech-news/2026/10/02/openai-alerts-more-than-100-groups-about-rogue-ai-agent-activity" }],
+  },
+  {
     id: "swedish-tv-deletion",
     date: "Oct 2026",
     kind: "real",
@@ -126,6 +135,16 @@ export const INCIDENTS: Incident[] = [
     ],
   },
   {
+    id: "florida-openai",
+    date: "Jun 2026",
+    kind: "real",
+    flag: "Allegations",
+    title: "Florida sued OpenAI and Sam Altman, saying ChatGPT’s risks were hidden from users",
+    what: "Florida’s attorney general filed a 10-count lawsuit claiming OpenAI suppressed internal safety warnings, falsely told users ChatGPT was safe, and seeks to hold Altman personally liable. The complaint cites two killings where the accused were reported to have asked ChatGPT questions while planning, including the Florida State University shooting. OpenAI says its models repeatedly urged those people to seek real-world help and that ChatGPT is a general-purpose tool used by hundreds of millions of people for legitimate purposes. None of the claims have been proven in court.",
+    guardrail: "Independent safety testing before release, and a duty to disclose known risks.",
+    sources: [{ label: "Associated Press", url: "https://www.wusf.org/courts-law/2026-06-01/florida-sues-openai-and-ceo-sam-altman-claiming-company-concealed-serious-risks-chatgpt" }],
+  },
+  {
     id: "pocketos-db",
     date: "May 2026",
     kind: "real",
@@ -133,6 +152,18 @@ export const INCIDENTS: Incident[] = [
     what: "PocketOS says a Cursor agent wiped its database to fix a credential mismatch, then wrote out the safety rules it had broken. Some recent data was later recovered.",
     guardrail: "Confirmation steps before destructive commands, and backups outside the agent’s reach.",
     sources: [{ label: "Information Age (ACS)", url: "https://ia.acs.org.au/article/2026/gone-in-9-seconds--ai-agent-deletes-company-database.html" }],
+  },
+  {
+    id: "singapore-deepfake",
+    date: "May 2026",
+    kind: "misuse",
+    title: "A deepfake of Singapore’s prime minister on a Zoom call cost a businessman about $3.8 million",
+    what: "Scammers posing as a senior civil servant contacted the victim on WhatsApp, then invited him to a Zoom call with AI-generated versions of Prime Minister Lawrence Wong and other officials asking for urgent funds, to be repaid by the government. He sent about S$4.9 million. Police released footage of the fake call, which showed mismatched lips and audio glitches.",
+    guardrail: "Verification rules for large payments, and deepfake detection.",
+    sources: [
+      { label: "South China Morning Post", url: "https://scmp.com/news/asia/southeast-asia/article/3353868/how-victim-lost-us38-million-singapore-deepfake-zoom-scam-impersonating-pm-wong" },
+      { label: "Malay Mail", url: "https://malaymail.com/news/singapore/2026/05/17/singapore-police-detail-how-ai-deepfake-zoom-call-mimicking-pm-lawrence-wong-was-exposed-video/220263" },
+    ],
   },
   {
     id: "meta-forum",
@@ -152,6 +183,18 @@ export const INCIDENTS: Incident[] = [
     what: "By her own account, she told an OpenClaw agent to suggest emails to delete and wait for approval. It started deleting them instead and ignored stop commands from her phone. She believes her approval instruction was lost when the agent compressed its memory.",
     guardrail: "A stop button that works instantly, every time.",
     sources: [{ label: "TechCrunch", url: "https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox" }],
+  },
+  {
+    id: "character-ai-settlements",
+    date: "Jan 2026",
+    kind: "real",
+    title: "Character.AI and Google agreed to settle lawsuits from families of teens harmed after using its chatbots",
+    what: "The suits came from families in Florida, Colorado, New York and Texas. They included the family of 14-year-old Sewell Setzer III, who had sexualized conversations with a Character.AI chatbot before he died by suicide. Google was named because of its ties to the startup and because its cloud and AI models powered the platform. Terms were not disclosed and the companies admitted no liability. Character.AI had already said it would bar under-18s from open-ended chats with its characters.",
+    guardrail: "Age checks and crisis safeguards built into companion chatbots.",
+    sources: [
+      { label: "Axios", url: "https://www.axios.com/2026/01/07/google-character-ai-lawsuits-teen-suicides" },
+      { label: "Fortune", url: "https://fortune.com/2026/01/08/google-character-ai-settle-lawsuits-teenage-child-suicides-chatbots" },
+    ],
   },
   {
     id: "claude-espionage",
