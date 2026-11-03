@@ -5,6 +5,8 @@
 // "Deployed" means it is in use. "Trial" means measured in people or production, but not
 // yet routine. "Research" means a published result that has not been applied at scale.
 
+import { newestFirst } from "./dates";
+
 export type Stage = "deployed" | "trial" | "research";
 
 export const STAGES: { id: Stage; label: string; blurb: string }[] = [
@@ -24,7 +26,7 @@ export type Breakthrough = {
   sources: { label: string; url: string }[];
 };
 
-export const BREAKTHROUGHS: Breakthrough[] = [
+export const BREAKTHROUGHS: Breakthrough[] = newestFirst([
   {
     id: "alphafold",
     date: "2024",
@@ -189,7 +191,7 @@ export const BREAKTHROUGHS: Breakthrough[] = [
       { label: "The Register", url: "https://www.theregister.com/2025/10/02/curl_project_swamped_with_ai/" },
     ],
   },
-];
+]);
 
 export const byStage = (s: Stage | "all") => (s === "all" ? BREAKTHROUGHS : BREAKTHROUGHS.filter((b) => b.stage === s));
 export const stageMeta = (s: Stage) => STAGES.find((x) => x.id === s)!;

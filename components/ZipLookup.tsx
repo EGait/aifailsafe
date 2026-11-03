@@ -2,6 +2,7 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import { FIND_URL, lookupZip, ordinal, type Lookup } from "@/lib/reps";
 import { track } from "@/lib/track";
+import { copyText } from "@/lib/clipboard";
 import Composer from "./Composer";
 import RepCard from "./RepCard";
 
@@ -15,6 +16,7 @@ export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) 
   const onMessage = useCallback((t: string) => setMessage(t), []);
   const onScript = useCallback((t: string) => setScript(t), []);
   const [sent, setSent] = useState(0);
+  const [linkCopied, setLinkCopied] = useState(false);
 
   const run = useCallback(async (value: string) => {
     setError("");
@@ -105,7 +107,17 @@ export default function ZipLookup({ initialZip = "" }: { initialZip?: string }) 
           {done && (
             <div className="card">
               <p>You just told Congress what you want on AI. The more people do it, the harder it is to ignore.</p>
-              <button type="button" className="call" onClick={() => navigator.share?.({ title: "AIFailSafe", url: location.origin }).catch(() => {})}>Share this page</button>
+              <button
+                type="button"
+                className="call"
+                onClick={async () => {
+                  if (navigator.share) return navigator.share({ title: "AIFailSafe", url: location.origin }).catch(() => {});
+                  setLinkCopied(await copyText(location.origin));
+                }}
+              >
+                Share this page
+              </button>
+              {linkCopied && <p className="hint">Link copied. Paste it anywhere to share.</p>}
             </div>
           )}
         </div>

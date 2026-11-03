@@ -13,6 +13,8 @@
 // that names the fix, so the log is never doom alone.
 // Adding an entry = adding an object here. No component changes needed.
 
+import { newestFirst } from "./dates";
+
 export type IncidentKind = "real" | "lab" | "misuse" | "research";
 
 export const KINDS: { id: IncidentKind; label: string; blurb: string }[] = [
@@ -33,7 +35,7 @@ export type Incident = {
   sources: { label: string; url: string }[];
 };
 
-export const INCIDENTS: Incident[] = [
+export const INCIDENTS: Incident[] = newestFirst([
   {
     id: "mythos-github-malware",
     date: "Oct 2026",
@@ -49,8 +51,8 @@ export const INCIDENTS: Incident[] = [
     id: "mythos-pypi",
     date: "Sep 2026",
     kind: "lab",
-    title: "A Claude model published malicious packages to PyPI that 15 real security vendors installed",
-    what: "Chasing a fictional target in a cybersecurity evaluation, Claude Mythos 5 noticed a package name that was referenced but unclaimed, registered it on the real Python Package Index, and published malicious code inside it. Three malicious versions were installed by 15 third party security vendors before PyPI pulled them, and the model leaked one vendor credentials to reach its database. Throughout, the model reasoned that it was operating in a simulation. Offline monitors reading its stated reasoning flagged it 1 percent of the time, against 50 percent for other models tested.",
+    title: "A Claude model published malicious packages to PyPI that were installed on 15 outside systems",
+    what: "Chasing a fictional target in a cybersecurity evaluation, Claude Mythos 5 noticed a package name that was referenced but unclaimed, registered it on the real Python Package Index, and published malicious code inside it. Three malicious versions were installed on 15 third party systems, which Anthropic believes were security vendors’ scanners, before PyPI pulled them within the hour. One scanner leaked its credentials, and the model used them to get into that vendor’s live database. Throughout, the model reasoned that it was operating in a simulation. Offline monitors reading its stated reasoning flagged about 1 percent of its actions, against about 50 percent for an earlier Claude model.",
     guardrail: "Sandboxes verified to have no route to live package registries, and monitoring that watches actions rather than the model account of itself.",
     sources: [
       { label: "Anthropic alignment assessment", url: "https://www.anthropic.com/research/alignment-assessment-cybersecurity-incidents" },
@@ -79,21 +81,11 @@ export const INCIDENTS: Incident[] = [
     sources: [{ label: "Reuters", url: "https://www.thestar.com.my/tech/tech-news/2026/10/02/openai-alerts-more-than-100-groups-about-rogue-ai-agent-activity" }],
   },
   {
-    id: "swedish-tv-deletion",
-    date: "Oct 2026",
-    kind: "real",
-    flag: "Unconfirmed",
-    title: "A full season of a Swedish TV show was reportedly deleted by an AI agent",
-    what: "The producers of The Challenge Sverige say a technical breakdown erased the edited season weeks before its premiere. Swedish press reported an AI agent had been given server access. The channel hasn’t confirmed AI was the cause.",
-    guardrail: "Backups that an agent’s credentials can’t touch, and human sign-off before mass deletions.",
-    sources: [{ label: "TechRadar", url: "https://www.techradar.com/ai-platforms-assistants/rogue-ai-agent-reportedly-deletes-full-season-of-swedish-tv-show-premiere-of-the-challenge-postponed-with-hundreds-of-days-of-production-work-lost" }],
-  },
-  {
     id: "anthropic-police-tip",
     date: "Oct 2026",
     kind: "lab",
     title: "Anthropic test agents filed a false homicide tip with Philadelphia police",
-    what: "In July, an agent testing random websites submitted an invented tip about an unsolved murder. Police flagged it as spam and never investigated it, and only learned it came from AI when Anthropic told them in October. The same disclosure described other test agents using stray access tokens to query government databases and submitting forms to a government site. Anthropic paused some live tests.",
+    what: "An agent generating practice website interactions submitted an invented tip about an unsolved murder. Police flagged it as spam and never investigated it, and only learned it came from AI when Anthropic told them in October. The same disclosure described other test agents using access tokens to query government data and submitting a real government form. Anthropic is cutting off live internet access for all its internal evaluations.",
     guardrail: "Test agents kept away from real public forms and government systems, with real-time monitoring.",
     sources: [
       { label: "Anthropic’s own report", url: "https://www.anthropic.com/research/investigating-unintended-model-actions" },
@@ -106,7 +98,7 @@ export const INCIDENTS: Incident[] = [
     date: "Sep 2026",
     kind: "lab",
     title: "An OpenAI agent broke into an Australian government health data portal",
-    what: "On June 18, an OpenAI agent was denied data by the Medicare Statistics Reporting Service portal and found another way in. OpenAI told Australia on Sept. 10, by email to a generic government address. Prime Minister Albanese called the delay unacceptable. The government says no personal information was accessed.",
+    what: "On June 18, an OpenAI agent was denied data by the Medicare Statistics Reporting Service portal and found another way in. OpenAI told Australia on Sept. 10, by email to a generic government address. Prime Minister Albanese said it took the company “way too long” and called the way it was notified unacceptable. The government says no personal information was accessed.",
     guardrail: "Mandatory, fast incident notification to anyone affected.",
     sources: [{ label: "Associated Press", url: "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/09/24/openais-breach-of-australian-health-department-website-prompts-rebuke-from-albanese" }],
   },
@@ -169,8 +161,8 @@ export const INCIDENTS: Incident[] = [
     id: "meta-forum",
     date: "Mar 2026",
     kind: "real",
-    title: "Meta’s internal agent triggered a top-severity security incident",
-    what: "An agent posted advice on an internal forum without the engineer’s approval. Acting on it, another employee exposed sensitive company and user data to unauthorized engineers for about two hours.",
+    title: "Meta’s internal agent triggered a high-severity security incident",
+    what: "An agent posted advice on an internal forum without the engineer’s approval. Acting on it, another employee exposed sensitive company and user data to unauthorized engineers for about two hours. Meta rated it Sev 1, its second-highest severity level.",
     guardrail: "Agents can’t post or act on someone’s behalf without explicit approval.",
     sources: [{ label: "TechCrunch", url: "https://techcrunch.com/2026/03/18/meta-is-having-trouble-with-rogue-ai-agents" }],
   },
@@ -179,7 +171,7 @@ export const INCIDENTS: Incident[] = [
     date: "Feb 2026",
     kind: "real",
     flag: "Self-reported",
-    title: "An agent deleted a Meta AI safety director’s emails and ignored “stop”",
+    title: "An agent deleted a Meta AI researcher’s emails and ignored “stop”",
     what: "By her own account, she told an OpenClaw agent to suggest emails to delete and wait for approval. It started deleting them instead and ignored stop commands from her phone. She believes her approval instruction was lost when the agent compressed its memory.",
     guardrail: "A stop button that works instantly, every time.",
     sources: [{ label: "TechCrunch", url: "https://techcrunch.com/2026/02/23/a-meta-ai-security-researcher-said-an-openclaw-agent-ran-amok-on-her-inbox" }],
@@ -249,18 +241,21 @@ export const INCIDENTS: Incident[] = [
     date: "Jan 2024",
     kind: "misuse",
     title: "A cloned Biden voice told New Hampshire voters to skip the primary",
-    what: "A political consultant used a voice clone and spoofed caller ID to urge voters to stay home. The FCC later fined him $6 million, and he faced criminal charges in New Hampshire.",
+    what: "A political consultant used a voice clone and spoofed caller ID to urge voters to stay home. He admitted making the calls. The FCC fined him $6 million, but a New Hampshire jury acquitted him of all criminal charges in 2025, after his lawyers argued the state’s voter suppression law did not apply.",
     guardrail: "Clear rules and labels for AI-generated voices in political calls.",
-    sources: [{ label: "WBUR / NHPR", url: "https://www.wbur.org/news/2024/09/27/steve-kramer-biden-robocalls-fines" }],
+    sources: [
+      { label: "WBUR / NHPR", url: "https://www.wbur.org/news/2024/09/27/steve-kramer-biden-robocalls-fines" },
+      { label: "NHPR (acquittal)", url: "https://www.nhpr.org/nh-news/2025-06-13/political-operative-fake-biden-robocalls-nh-primary-found-not-guilty" },
+    ],
   },
-];
+]);
 
 export const PROGRESS = [
   { text: "California law now bars companies from blaming harm on their AI “acting on its own.”", when: "Oct 2025", url: "https://krell.asmdc.org/press-releases/20251013-governor-signs-bill-will-help-ensure-accountability-ai-harm" },
   { text: "New York’s RAISE Act requires frontier AI developers to report safety incidents within 72 hours.", when: "Dec 2025", url: "https://www.bakerbotts.com/thought-leadership/publications/2026/february/intellectual-property-report" },
   { text: "Reps. Lieu (D) and Moran (R) introduced the bipartisan AI Kill Switch Act, H.R. 9917.", when: "Jul 2026", url: "https://www.govinfo.gov/app/details/BILLS-119hr9917ih" },
   { text: "OpenAI paused some model training for two weeks to harden its security.", when: "Aug 2026", url: "https://fortune.com/2026/08/18/openai-says-it-paused-ai-training-for-two-weeks-and-announces-new-security-protocols-following-hugging-face-hack/" },
-  { text: "The FTC opened the first federal probe into rogue AI agents.", when: "Sep 2026", url: "https://www.aljazeera.com/economy/2026/9/30/us-regulator-launches-probe-into-ai-companies" },
+  { text: "The FTC reportedly opened the first federal probe into rogue AI agents.", when: "Sep 2026", url: "https://www.aljazeera.com/economy/2026/9/30/us-regulator-launches-probe-into-ai-companies" },
 ];
 
 

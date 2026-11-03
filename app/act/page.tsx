@@ -7,13 +7,13 @@ export const metadata: Metadata = {
   alternates: { canonical: "/act" },
 };
 
-export default async function ActPage({ searchParams }: { searchParams: Promise<{ zip?: string }> }) {
+export default async function ActPage({ searchParams }: { searchParams: Promise<{ zip?: string | string[] }> }) {
   const { zip } = await searchParams;
   return (
     <>
       <h1>Who represents you?</h1>
       <p className="lead">Enter your ZIP code, write a message in under a minute, and send it to your two senators and your House member. Calling is one tap away too.</p>
-      <ZipLookup initialZip={zip ?? ""} />
+      <ZipLookup initialZip={typeof zip === "string" ? zip : ""} />
     </>
   );
 }

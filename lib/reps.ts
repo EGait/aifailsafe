@@ -23,21 +23,31 @@ export type Lookup = { state: string; senators: Member[]; districts: District[] 
 const PARTY: Record<string, string> = { D: "Democrat", R: "Republican", I: "Independent" };
 export const partyName = (p: string) => PARTY[p] ?? p;
 
+const getJson = async <T,>(url: string): Promise<T> => {
+  const r = await fetch(url);
+  if (!r.ok) throw new Error(`${url} -> ${r.status}`);
+  return r.json() as Promise<T>;
+};
+
 let cache: Promise<[RepsData, ZipData]> | null = null;
 function load() {
-  cache ??= Promise.all([
-    fetch("/data/reps.json").then((r) => r.json() as Promise<RepsData>),
-    fetch("/data/zips.json").then((r) => r.json() as Promise<ZipData>),
-  ]);
+  // Drop a failed load so the next attempt retries instead of reusing the rejection.
+  cache ??= Promise.all([getJson<RepsData>("/data/reps.json"), getJson<ZipData>("/data/zips.json")]).catch((e) => {
+    cache = null;
+    throw e;
+  });
   return cache;
 }
+
+/** Member links come from outside data; only ever put http(s) URLs into an href. */
+const safeUrl = (u: string) => (/^https?:\/\//i.test(u) ? u : "");
 
 const toMember = (r: RawMember, chamber: Member["chamber"]): Member => ({
   name: r[0],
   party: r[1],
   phone: r[2],
-  website: r[3],
-  contactForm: r[4],
+  website: safeUrl(r[3]),
+  contactForm: safeUrl(r[4]),
   chamber,
 });
 
