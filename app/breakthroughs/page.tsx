@@ -5,7 +5,7 @@ import BreakthroughList from "@/components/BreakthroughList";
 
 export const metadata: Metadata = {
   title: "Breakthroughs: what AI has actually delivered",
-  description: `${BREAKTHROUGHS.length} sourced examples of AI producing real results in medicine, biology and forecasting, each labeled by how far along it really is.`,
+  description: `${BREAKTHROUGHS.length} sourced examples of AI producing real results in medicine, biology, forecasting and security, each labeled by how far along it really is.`,
   alternates: { canonical: "/breakthroughs" },
 };
 

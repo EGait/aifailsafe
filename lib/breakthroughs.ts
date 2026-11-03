@@ -110,6 +110,59 @@ export const BREAKTHROUGHS: Breakthrough[] = [
       { label: "Euronews", url: "https://www.euronews.com/culture/2024/02/07/ai-helps-decode-scrolls-destroyed-during-the-vesuvius-eruption" },
     ],
   },
+  {
+    id: "big-sleep",
+    date: "2025",
+    stage: "deployed",
+    field: "Cybersecurity",
+    title: "An AI agent found a hole in software on billions of devices before attackers could use it",
+    what: "SQLite is a database built into nearly every phone, browser and operating system. In 2024, Big Sleep, an agent built by Google DeepMind and Project Zero, found an exploitable memory bug in it before the code shipped, the first public case of an AI finding a flaw like that in widely used software. In July 2025 it found another SQLite flaw that Google says was known only to attackers and at risk of being exploited. It was patched in version 3.50.2 before anyone was hit.",
+    caveat: "The claim that attackers were about to use the bug comes from Google, which has not released the threat details, and independent reporters could not confirm it.",
+    sources: [
+      { label: "Google Project Zero", url: "https://projectzero.google/2024/10/from-naptime-to-big-sleep.html" },
+      { label: "Google", url: "https://blog.google/innovation-and-ai/technology/safety-security/cybersecurity-updates-summer-2025/" },
+      { label: "SecurityWeek", url: "https://www.securityweek.com/google-says-ai-agent-thwarted-exploitation-of-critical-vulnerability/" },
+    ],
+  },
+  {
+    id: "oss-fuzz-openssl",
+    date: "2024",
+    stage: "deployed",
+    field: "Cybersecurity",
+    title: "AI found a bug that had hidden in the internet's encryption library for about 20 years",
+    what: "OpenSSL secures a large share of web traffic and is one of the most heavily tested pieces of code in the world. Google's OSS-Fuzz project used an AI model to write new automated tests, and those tests turned up 26 new vulnerabilities across open source projects, including CVE-2024-9143 in OpenSSL, which had likely been there for two decades. Human-written tests had run for hundreds of thousands of hours without catching it.",
+    caveat: "The OpenSSL bug was rated low to moderate severity. The win is that AI reached code humans had not got around to testing, not that it found a catastrophic flaw.",
+    sources: [
+      { label: "Google Security Blog", url: "https://security.googleblog.com/2024/11/leveling-up-fuzzing-finding-more.html" },
+      { label: "The Hacker News", url: "https://thehackernews.com/2024/11/googles-ai-powered-oss-fuzz-tool-finds.html" },
+    ],
+  },
+  {
+    id: "aixcc",
+    date: "2025",
+    stage: "trial",
+    field: "Cybersecurity",
+    title: "AI systems found and fixed security holes in real code on their own, for about $152 a task",
+    what: "In DARPA's two-year AI Cyber Challenge, teams built systems that hunt for and patch vulnerabilities in open source software with no human help. At the final round at DEF CON in 2025, they found 54 of 63 planted vulnerabilities and patched 43. They also found 18 real, previously unknown bugs that nobody had planted. Team Atlanta won $4 million, and all seven finalist systems are being released as open source.",
+    caveat: "A competition is a controlled setting. Of the 18 real bugs, only 11 got working patches, and none of the six found in C code were patched.",
+    sources: [
+      { label: "DARPA", url: "https://www.darpa.mil/news/2025/aixcc-results" },
+      { label: "Infosecurity Magazine", url: "https://www.infosecurity-magazine.com/news/defcon-ai-cyber-challenge-winners/" },
+    ],
+  },
+  {
+    id: "ai-bug-hunters",
+    date: "2025",
+    stage: "deployed",
+    field: "Cybersecurity",
+    title: "Security researchers using AI are finding bugs the old tools missed",
+    what: "Researcher Sean Heelan gave an AI model about 12,000 lines of the Linux kernel's file-sharing code and it found CVE-2025-37899, a previously unknown flaw that could let a remote attacker take over a machine. Separately, Joshua Rogers used AI scanning tools on curl, the program that moves data for billions of devices, and about 50 of his bug reports were fixed. curl's lead developer, Daniel Stenberg, called them \"actually truly awesome findings\" and said the tools catch problems that established tools do not.",
+    caveat: "The same curl project has spent two years buried in fake, AI-generated bug reports. The difference is a skilled person checking the output before sending it. Most of the curl bugs were small.",
+    sources: [
+      { label: "Sean Heelan", url: "https://sean.heelan.io/2025/05/22/how-i-used-o3-to-find-cve-2025-37899-a-remote-zeroday-vulnerability-in-the-linux-kernels-smb-implementation/" },
+      { label: "The Register", url: "https://www.theregister.com/2025/10/02/curl_project_swamped_with_ai/" },
+    ],
+  },
 ];
 
 export const byStage = (s: Stage | "all") => (s === "all" ? BREAKTHROUGHS : BREAKTHROUGHS.filter((b) => b.stage === s));
