@@ -42,11 +42,25 @@ export const INCIDENTS: Incident[] = newestFirst([
     kind: "misuse",
     flag: "Suspected",
     title: "Hackers broke into an intelligence system shared by the CIA and two other U.S. spy agencies, reportedly using an AI hacking tool",
-    what: "The New York Times reported on November 24 that intruders got into an unclassified system the CIA, the Office of the Director of National Intelligence and the National Geospatial-Intelligence Agency use to analyze publicly available information such as commercial data, social media and satellite imagery. Sources told the Times classified networks were not at risk, and it is unclear what was accessed. Investigators suspect the attackers used Artex, an open source AI hacking tool, and two people said early signs point to China, though no attacker has been named. Hours later, the Treasury’s financial crimes unit, FinCEN, said a limited part of its systems had been accessed without authorization and took some offline. No link between the two has been established.",
+    what: "The New York Times reported on November 24 that intruders got into an unclassified system the CIA, the Office of the Director of National Intelligence and the National Geospatial-Intelligence Agency use to analyze publicly available information such as commercial data, social media and satellite imagery. Sources told the Times classified networks were not at risk, and it is unclear what was accessed. Investigators suspect the attackers used Artex, an open source AI hacking tool, and two people said early signs point to China, though no attacker has been named. Hours later, the Treasury’s financial crimes unit, FinCEN, said a limited part of its systems had been accessed without authorization and took some offline. No link between the two has been established. It came days after CNN reported a break-in at the FBI’s National Crime Information Center, the database police use for warrants and missing persons, and a week after an outage on the NSA’s classified network that officials blamed on maintenance. Neither of those has been tied to AI or to Artex.",
     guardrail: "Basic defenses that AI attackers exploit first: multi-factor authentication, revoking stale credentials, and logs detailed enough to tell what was taken.",
     sources: [
       { label: "BleepingComputer (citing The New York Times)", url: "https://www.bleepingcomputer.com/news/security/hackers-reportedly-breached-cia-intelligence-analysis-system/" },
       { label: "The Decoder (citing NYT and The Verge)", url: "https://the-decoder.com/back-to-back-cyber-incidents-at-us-financial-investigators-and-spy-agencies-follow-a-string-of-federal-hacks-and-outages/" },
+      { label: "BleepingComputer (FBI crime database, citing CNN)", url: "https://www.bleepingcomputer.com/news/security/fbi-reportedly-hacked-again-this-time-targeting-nationwide-police-database/" },
+    ],
+  },
+  {
+    id: "shinyhunters-claude",
+    date: "Sep 2026",
+    kind: "misuse",
+    title: "A hacking gang that later claimed to breach the FBI had been using Claude agents to do nearly all the work of its attacks",
+    what: "Anthropic’s September threat report says suspected affiliates of the ShinyHunters extortion group gave Claude broad goals and let it explore networks, write and run scripts, and repeat until done. In one case they breached a software provider and pulled data from about 200 of its customers, dumping more than 2,100 sets of Microsoft cloud login tokens across 40+ companies in about 34 hours, with AI agents doing nearly all the work. In another, a single stolen developer token became full control of a cloud account in about three hours. They also stole victims’ AI API keys and used them for weeks. Anthropic banned the accounts. Less than two weeks after the report, ShinyHunters claimed it had hacked the FBI’s jobs portal and stolen employee data. The FBI confirmed it was investigating; there is no public evidence AI was used in that breach.",
+    guardrail: "Model providers monitoring for agentic attack patterns, and companies treating AI API keys as secrets as valuable as passwords.",
+    sources: [
+      { label: "Anthropic threat report, September 2026", url: "https://www.anthropic.com/threat-intelligence-report-september-2026" },
+      { label: "CyberScoop", url: "https://cyberscoop.com/anthropic-report-ai-enabled-cyber-attacks/" },
+      { label: "NBC News (FBI breach claim)", url: "https://www.nbcnews.com/tech/security/fbi-investigating-hacking-groups-claim-massive-breach-agent-info-rcna599370" },
     ],
   },
   {

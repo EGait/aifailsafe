@@ -128,6 +128,19 @@ export const BREAKTHROUGHS: Breakthrough[] = newestFirst([
     ],
   },
   {
+    id: "navier-stokes",
+    date: "Sep 2026",
+    stage: "research",
+    field: "Mathematics",
+    title: "A swarm of OpenAI agents showed that the equations for fluid flow can break down",
+    what: "The Navier-Stokes equations describe how water and air move, and whether they can ever blow up, producing infinite speeds from smooth starting conditions, is a $1 million Millennium Prize Problem. On September 8, OpenAI released a 166-page proof that, in the version where an outside force pushes the fluid, they can: a vortex gets thinner and faster until its speed goes to infinity. About 10,000 agents running an internal OpenAI model worked together for roughly 88 hours, at a cost OpenAI puts in the millions of dollars. The proof has been checked in the Lean proof checker. A day earlier, NYU's Tristan Buckmaster and Anthropic's Levent Alpöge reported a related blowup for the frictionless version of the equations, using several AI models.",
+    caveat: "This is the forced version, not the unforced one most mathematicians mean, and OpenAI is not claiming the prize. One fluid dynamicist says no human has fully verified it yet. Buckmaster has questioned whether OpenAI drew on his and Alpöge's progress. OpenAI says it did not see their work but cannot rule out that anonymized data from their use of its products helped train its models.",
+    sources: [
+      { label: "Science News", url: "https://www.sciencenews.org/article/ai-math-puzzle-navier-stokes-openai" },
+      { label: "CNBC", url: "https://www.cnbc.com/2026/09/09/openai-navier-stokes-math-problem-solved.html" },
+    ],
+  },
+  {
     id: "unit-distance",
     date: "2026",
     stage: "research",
