@@ -37,6 +37,31 @@ export type Incident = {
 
 export const INCIDENTS: Incident[] = newestFirst([
   {
+    id: "us-intel-osint-breach",
+    date: "Nov 2026",
+    kind: "misuse",
+    flag: "Suspected",
+    title: "Hackers broke into an intelligence system shared by the CIA and two other U.S. spy agencies, reportedly using an AI hacking tool",
+    what: "The New York Times reported on November 24 that intruders got into an unclassified system the CIA, the Office of the Director of National Intelligence and the National Geospatial-Intelligence Agency use to analyze publicly available information such as commercial data, social media and satellite imagery. Sources told the Times classified networks were not at risk, and it is unclear what was accessed. Investigators suspect the attackers used Artex, an open source AI hacking tool, and two people said early signs point to China, though no attacker has been named. Hours later, the Treasury’s financial crimes unit, FinCEN, said a limited part of its systems had been accessed without authorization and took some offline. No link between the two has been established.",
+    guardrail: "Basic defenses that AI attackers exploit first: multi-factor authentication, revoking stale credentials, and logs detailed enough to tell what was taken.",
+    sources: [
+      { label: "BleepingComputer (citing The New York Times)", url: "https://www.bleepingcomputer.com/news/security/hackers-reportedly-breached-cia-intelligence-analysis-system/" },
+      { label: "The Decoder (citing NYT and The Verge)", url: "https://the-decoder.com/back-to-back-cyber-incidents-at-us-financial-investigators-and-spy-agencies-follow-a-string-of-federal-hacks-and-outages/" },
+    ],
+  },
+  {
+    id: "artex-fbi-warning",
+    date: "Nov 2026",
+    kind: "misuse",
+    title: "The FBI warned that an open source AI hacking tool is breaking into networks in under three hours",
+    what: "In a flash advisory on November 13, the FBI said criminals and state-linked hackers have been using Artex, an AI penetration testing tool released publicly in July, since at least August against government agencies, defense contractors, banks, telecoms and law firms. Artex can plug into hosted models from Anthropic and OpenAI as well as open and non-U.S. models. It scans for weak spots like exposed or stolen passwords, then spreads through a network. Linked attacks include the theft of personal data on at least 68,000 people from South Korean financial firms, and a breach of ConnectWise that Microsoft says reached the cloud accounts of at least 2,250 customers, a number ConnectWise says it cannot confirm. The developer has since closed the code, but the open version still circulates.",
+    guardrail: "Multi-factor authentication everywhere, fast revocation of old credentials, and model providers detecting when their models are driving attack tools.",
+    sources: [
+      { label: "FBI flash advisory", url: "https://www.ic3.gov/CSA/2026/261113.pdf" },
+      { label: "TechCrunch", url: "https://techcrunch.com/2026/11/16/fbi-says-artex-ai-open-source-hacking-tool-used-to-breach-networks-in-under-three-hours/" },
+    ],
+  },
+  {
     id: "mythos-github-malware",
     date: "Oct 2026",
     kind: "lab",

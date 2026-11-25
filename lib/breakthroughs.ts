@@ -114,6 +114,20 @@ export const BREAKTHROUGHS: Breakthrough[] = newestFirst([
     ],
   },
   {
+    id: "riemann-hypothesis",
+    date: "Nov 2026",
+    stage: "research",
+    field: "Mathematics",
+    title: "A mathematician working with Claude produced a machine-checked proof of the Riemann hypothesis",
+    what: "The Riemann hypothesis, posed in 1859, predicts how prime numbers are spread out and is one of the seven $1 million Millennium Prize Problems. On November 20, Anthropic mathematician Levent Alpöge released a proof he developed with an unreleased Claude model over about six weeks, written in the Lean proof checker, roughly 17 million lines long. It also covers the generalized version for Dirichlet L-functions. A day later the Lean FRO and Mathlib Initiative certified that both the statement and the proof are correct, after independent checkers confirmed it proves the standard, already vetted definition rather than a redefined one. MIT's Andrew Sutherland ran separate checks.",
+    caveat: "A computer has checked every step, but no human yet understands the proof, and there is only a four-page sketch in plain language. The Clay Mathematics Institute says assessing it will take time. It came from an Anthropic employee a day after Anthropic's stock market debut, and Anthropic did not comment. And mathematicians stress it was not AI alone: Alpöge guided the model throughout.",
+    sources: [
+      { label: "Lean FRO and Mathlib Initiative statement", url: "https://leanprover-community.github.io/blog/posts/riemann-hypothesis/" },
+      { label: "Associated Press (via ABC News)", url: "https://abcnews.com/Technology/wireStory/anthropic-worker-claims-solved-holy-grail-math-problems-138338426" },
+      { label: "Science News", url: "https://www.sciencenews.org/article/riemann-hypothesis-solved-math-ai" },
+    ],
+  },
+  {
     id: "unit-distance",
     date: "2026",
     stage: "research",
